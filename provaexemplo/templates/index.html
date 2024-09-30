@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campo de Texto e Tabela</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container text-center">
+        <form action="/" method="post" class="row justify-content-center">
+            <div class="col-6">
+                <div class="input-group">
+                    <input type="text" name="senha" class="form-control" placeholder="Digite uma senha...">
+                    <button class="btn btn-secondary" type="submit" id="button-addon2">Testar Senha</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="row mt-3">
+            <table class="table table-bordered table-hover table-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col" class="flex text-center">Senha</th>
+                        <th scope="col" class="flex text-center">SHA-256</th>
+                        <th scope="col" class="flex text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% for senha in senhas %}
+                        <tr>
+                            <td>{{senha.senha}}</td>
+                            <td>{{senha.hash}}</td>
+                            <td class="flex text-center">
+                                <a class="btn-delete" href="/{{senha.id}}"><i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <!-- Mais linhas podem ser adicionadas -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
